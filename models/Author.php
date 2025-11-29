@@ -33,7 +33,19 @@ class Author extends \yii\db\ActiveRecord
     {
         return [
             [['full_name'], 'required'],
-            [['full_name'], 'string', 'max' => 255],
+            [['full_name'], 'string', 'min' => 3, 'max' => 100],
+            [
+                ['full_name'],
+                'match',
+                'pattern' => '/^[а-яА-ЯёЁa-zA-Z\s\-]+$/u',
+                'message' => 'ФИО может содержать только буквы, пробел и дефис.'
+            ],
+            [
+                ['full_name'],
+                'match',
+                'pattern' => '/^\S+\s+\S+/u',
+                'message' => 'Введите Имя и Фамилию.'
+            ],
         ];
     }
 

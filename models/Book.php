@@ -54,9 +54,10 @@ class Book extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'year', 'isbn'], 'required'],
-            [['year'], 'integer'],
+            [['year'], 'integer', 'min' => 1000, 'max' => date('Y')],
             [['description'], 'string'],
             [['title', 'image'], 'string', 'max' => 255],
+            [['isbn'], 'match', 'pattern' => '/^[0-9\-]+$/', 'message' => 'ISBN должен содержать только цифры и дефис'],
             [['isbn'], 'string', 'max' => 20],
             [['isbn'], 'unique'],
             [['authorIds'], 'required', 'message' => 'Выберите хотя бы одного автора.'],

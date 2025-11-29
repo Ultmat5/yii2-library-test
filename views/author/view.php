@@ -63,9 +63,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($subModel, 'author_id')->hiddenInput()->label(false) ?>
 
-                <?= $form->field($subModel, 'phone')->textInput([
-                    'placeholder' => '79001234567',
-                    'type' => 'tel'
+                <?= $form->field($subModel, 'phone')->widget(MaskedInput::class, [
+                    'mask' => '79999999999',
+                    'options' => [
+                        'placeholder' => '79001234567',
+                        'class' => 'form-control',
+                        'id' => 'phone-input'
+                    ],
+                    'clientOptions' => [
+                        'clearIncomplete' => true, // Очищать, если ввел не до конца
+                    ]
                 ])->label('Введите ваш номер телефона') ?>
 
                 <div class="alert alert-success d-none" id="sub-success-msg"></div>

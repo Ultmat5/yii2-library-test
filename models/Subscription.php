@@ -44,7 +44,13 @@ class Subscription extends \yii\db\ActiveRecord
         return [
             [['author_id', 'phone'], 'required'],
             [['author_id', 'created_at'], 'integer'],
-            [['phone'], 'string', 'max' => 20],
+            [['phone'], 'trim'],
+            [
+                ['phone'],
+                'match',
+                'pattern' => '/^7\d{10}$/',
+                'message' => 'Телефон должен быть в формате 79001234567 (только цифры, без +)'
+            ],
             [['author_id', 'phone'], 'unique', 'targetAttribute' => ['author_id', 'phone'], 'message' => 'Вы уже подписаны на этого автора.'],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Author::class, 'targetAttribute' => ['author_id' => 'id']],
         ];
