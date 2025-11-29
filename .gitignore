@@ -33,7 +33,7 @@ tests/_support/_generated
 /.vagrant
 
 /web/assets/*
-!/web/assets/.gitignore
+!/web/assets/.gitkeep
 /runtime
 /web/uploads/*
-!/web/uploads/.gitignore
+!/web/uploads/.gitkeep
